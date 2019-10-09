@@ -16,6 +16,6 @@ public class Coffee {
     private Long id;
     private String name;
     private Money price;
-    private Date creteTime;
+    private Date createTime;
     private Date updateTime;
 }
