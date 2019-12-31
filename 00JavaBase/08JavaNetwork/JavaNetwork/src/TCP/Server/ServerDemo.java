@@ -1,4 +1,4 @@
-package TCP.Client;
+package TCP.Server;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -17,6 +17,12 @@ public class ServerDemo {
             bw.newLine();
             bw.flush();
         }
+
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                s.getOutputStream()));
+        writer.write("success");
+        writer.newLine();
+        writer.flush();
 
         bw.close();
         s.close();

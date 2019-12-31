@@ -20,6 +20,15 @@ public class ClientDemo {
             bw.flush();
         }
 
+        s.shutdownOutput();
+        BufferedReader reader=new BufferedReader(new InputStreamReader(s.getInputStream()));
+
+        String data=reader.readLine();
+        System.out.println("client:"+data);
+
+        br.close();
+        reader.close();
+        bw.close();
         s.close();
     }
 }
