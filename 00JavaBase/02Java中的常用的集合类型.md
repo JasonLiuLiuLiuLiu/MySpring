@@ -4,11 +4,15 @@
 
 ### List
 
+元素可重复,遍历出来的顺序是插入顺序.
+
 #### ArrayList
+
+要了解ArrayList的工作原理,
 
 ``` java
 
-transient Object[] elementData; // non-private to simplify nested class access
+    transient Object[] elementData; // non-private to simplify nested class access
     public boolean add(E e) {
         ensureCapacityInternal(size + 1);  // Increments modCount!!
         elementData[size++] = e;
@@ -17,36 +21,21 @@ transient Object[] elementData; // non-private to simplify nested class access
 
 ```
 
-#### Vector
+可以看到,往ArrayList中添加元素其实是给Object[]数组赋值,而赋值之前,数组的长度是否足够,如果不够了,会对数组进行扩容.
 
 ``` java
+    private void ensureExplicitCapacity(int minCapacity) {
+        modCount++;
+        if (minCapacity - elementData.length > 0)
+            grow(minCapacity);
+    }
+```
 
-    /**
-     * The number of times this list has been <i>structurally modified</i>.
-     * Structural modifications are those that change the size of the
-     * list, or otherwise perturb it in such a fashion that iterations in
-     * progress may yield incorrect results.
-     *
-     * <p>This field is used by the iterator and list iterator implementation
-     * returned by the {@code iterator} and {@code listIterator} methods.
-     * If the value of this field changes unexpectedly, the iterator (or list
-     * iterator) will throw a {@code ConcurrentModificationException} in
-     * response to the {@code next}, {@code remove}, {@code previous},
-     * {@code set} or {@code add} operations.  This provides
-     * <i>fail-fast</i> behavior, rather than non-deterministic behavior in
-     * the face of concurrent modification during iteration.
-     *
-     * <p><b>Use of this field by subclasses is optional.</b> If a subclass
-     * wishes to provide fail-fast iterators (and list iterators), then it
-     * merely has to increment this field in its {@code add(int, E)} and
-     * {@code remove(int)} methods (and any other methods that it overrides
-     * that result in structural modifications to the list).  A single call to
-     * {@code add(int, E)} or {@code remove(int)} must add no more than
-     * one to this field, or the iterators (and list iterators) will throw
-     * bogus {@code ConcurrentModificationExceptions}.  If an implementation
-     * does not wish to provide fail-fast iterators, this field may be
-     * ignored.
-     */
+#### Vector
+
+Vector是线程安全的,通过观察源码,发现基本所有操作方法上都加上了synchronized,表示同步方法,同时仅允许一个线程进行操作.
+
+``` java
     protected transient int modCount = 0;
     protected Object[] elementData;
 
@@ -57,6 +46,14 @@ transient Object[] elementData; // non-private to simplify nested class access
         return true;
     }
 ```
+
+同时,每次Vector的被修改modCount都会+1, 这是为了使遍历更安全,在遍历该对象时,如果发现modCount与开始遍历时的值不一致了,就会抛出异常,这样做有什么好处呢?
+
+先假设不抛异常的情况下:
+
+Vector中开始遍历时有 0,1,2,3,4 五个元素, 一波操作后,遍历到了3这里,对应的索引也是3, 可于此同时,Vector中插入了一条数据,变成0,5,1,2,3,4 上一次遍历,我们用的索引时3,那么下一次,我们要读取的时索引为4的数据,然而,修改后,索引4上的数据仍然是3,这个元素就被重复读取了.
+
+所以,遍历时,默认时不允许增删集合元素的.
 
 #### LinkedList
 
@@ -82,7 +79,11 @@ transient Object[] elementData; // non-private to simplify nested class access
     }
 ```
 
+可以看到,LinkedList插入数据时,并不是给数组赋值,而是给最后的一个节点的下级节点赋值,这种链表存储数据的好处是当插入数据或者删除数据对其他元素没有影响,同时,也不会像ArryList和Vector中存储数据的数组扩容是要把自己的的所有元素赋值给新的数组,所以LinkedList插入删除数据效率更高.
+
 ### Set
+
+元素不可重复,遍历顺序不一定是插入顺序.
 
 #### HashSet
 
@@ -94,8 +95,9 @@ transient Object[] elementData; // non-private to simplify nested class access
     public boolean add(E e) {
         return map.put(e, PRESENT)==null;
     }
-
 ```
+
+在HashSet中插入数据,实际上就是把插入的数据作为Key插入HashMap中,而无论Key为多少,这些Key在HashMap中对应的Value永远为同一个Object对象.
 
 #### LinkedHashSet
 
@@ -112,6 +114,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
     }
 ```
 
+与HashSet同理,LinkedHashSet中插入数据是把待插入的数据作为Key插入到LinkedHashMap中.所有Key对应的Value亦是同一个Object
+
 #### TreeSet
 
 ``` java
@@ -126,6 +130,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
 ```
 
 ## Map
+
+存储的是键值对,键不可重复,通过键取值时间复杂度为O(1).
 
 ### HashMap
 
