@@ -124,6 +124,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
 
 #### TreeSet
 
+用TreeMap进行存储数据.
+
 ``` java
 
     private transient HashMap<E,Object> map=new TreeMap<E,Object>();
@@ -140,6 +142,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
 存储的是键值对,键不可重复,通过键取值时间复杂度为O(1).
 
 ### HashMap
+
+利用Hash表进行数据存储
 
 ``` java
 
@@ -236,6 +240,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
 
 ### HashTable
 
+线程安全
+
 ``` java
 
     public synchronized V put(K key, V value) {
@@ -285,6 +291,8 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
 ```
 
 ### TreeMap
+
+二叉树+Hash
 
 ``` java
     public V put(K key, V value) {
@@ -341,8 +349,9 @@ public class LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, j
     }
 ```
 
-
 ### LinkedHashMap
+
+链表+hash
 
 ``` java
     static class Entry<K,V> extends HashMap.Node<K,V> {
