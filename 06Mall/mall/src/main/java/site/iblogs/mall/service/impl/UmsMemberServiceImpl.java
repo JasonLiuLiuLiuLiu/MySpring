@@ -12,7 +12,6 @@ import java.util.Random;
 
 /**
  * 会员管理Service实现类
- * Created by macro on 2018/8/3.
  */
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {
@@ -24,7 +23,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     private Long AUTH_CODE_EXPIRE_SECONDS;
 
     @Override
-    public CommonResult generateAuthCode(String telephone) {
+    public CommonResult<String> generateAuthCode(String telephone) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < 6; i++) {
@@ -39,7 +38,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     //对输入的验证码进行校验
     @Override
-    public CommonResult verifyAuthCode(String telephone, String authCode) {
+    public CommonResult<String> verifyAuthCode(String telephone, String authCode) {
         if (StringUtils.isEmpty(authCode)) {
             return CommonResult.failed("请输入验证码");
         }
