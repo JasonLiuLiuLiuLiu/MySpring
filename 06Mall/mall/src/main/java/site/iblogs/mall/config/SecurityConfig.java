@@ -22,6 +22,7 @@ import site.iblogs.mall.component.RestfulAccessDeniedHandler;
 import site.iblogs.mall.dto.AdminUserDetails;
 import site.iblogs.mall.mbg.model.UmsAdmin;
 import site.iblogs.mall.mbg.model.UmsPermission;
+import site.iblogs.mall.service.UmsAdminService;
 
 import java.util.List;
 
