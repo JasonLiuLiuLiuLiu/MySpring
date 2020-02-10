@@ -1,0 +1,6 @@
+GC调优步骤：
+1、打印GC日志
+-XX:+PrintGCDetails  -XX:+PrintGCTimeStamps  -XX:+PrintGCDateStamps  -Xloggc:./gc.log
+Tomcat则直接加在JAVA_OPTS变量里
+2、分析日志得到关键性指标
+3、分析GC原因，调优JVM参数
