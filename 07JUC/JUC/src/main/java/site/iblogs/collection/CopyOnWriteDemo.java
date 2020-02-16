@@ -1,8 +1,10 @@
 package site.iblogs.collection;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 public class CopyOnWriteDemo {
     /*
@@ -27,6 +29,15 @@ public class CopyOnWriteDemo {
             new Thread(()->{
                 list.add(UUID.randomUUID().toString());
                 System.out.println(list);
+            },String.valueOf(i)).start();
+        }
+
+        Set<String> set=new CopyOnWriteArraySet<>();
+
+        for (int i=0;i<30;i++){
+            new Thread(()->{
+                set.add(UUID.randomUUID().toString());
+                System.out.println(set);
             },String.valueOf(i)).start();
         }
     }
