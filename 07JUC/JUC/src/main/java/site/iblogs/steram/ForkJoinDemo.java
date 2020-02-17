@@ -17,7 +17,7 @@ class ForkJoinTest {
         long start = System.currentTimeMillis();
 
         long sum = 0L;
-        for (long i = 0L; i <= 10_0000__0000; i++) {
+        for (long i = 0L; i <= 10_0000__0000L; i++) {
             sum += i;
         }
         long end = System.currentTimeMillis();
@@ -41,7 +41,7 @@ class ForkJoinTest {
     public static void test3() {
         long start = System.currentTimeMillis();
 
-        long sum = LongStream.rangeClosed(0, 10_0000__0000).parallel().reduce(0, Long::sum);
+        long sum = LongStream.rangeClosed(0, 10_0000__0000L).parallel().reduce(0, Long::sum);
 
         long end = System.currentTimeMillis();
         System.out.println("time:" + (end - start) + " sum:" + sum);
@@ -51,32 +51,31 @@ class ForkJoinTest {
 
 class ForkJoinDemo extends RecursiveTask<Long> {
 
-    private Long left;
-    private Long right;
+    private Long start;
+    private Long end;
     private Long temp = 10000L;
 
-    public ForkJoinDemo(Long left, Long right) {
-        this.left = left;
-        this.right = right;
+    public ForkJoinDemo(Long start, Long end) {
+        this.start = start;
+        this.end = end;
     }
 
 
     @Override
     protected Long compute() {
-        if (right - left <= temp) {
-            long sum = 0L;
-            for (Long i = left; i <= right; i++) {
+        if (end - start <= temp) {
+            Long sum = 0L;
+            for (Long i = start; i <= end; i++) {
                 sum += i;
             }
             return sum;
         } else {
-            Long middle=(right+left)/2;
-
-            ForkJoinDemo leftTask=new ForkJoinDemo(left,middle);
+            long middle=(start+end)/2;
+            ForkJoinDemo leftTask=new ForkJoinDemo(start,middle);
             leftTask.fork();
-            ForkJoinDemo rightTask=new ForkJoinDemo(middle+1,right);
+            ForkJoinDemo rightTask=new ForkJoinDemo(middle+1,end);
             rightTask.fork();
-            return rightTask.join()+rightTask.join();
+            return rightTask.join()+leftTask.join();
 
         }
     }
