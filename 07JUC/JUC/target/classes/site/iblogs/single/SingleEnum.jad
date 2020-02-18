@@ -1,0 +1,56 @@
+// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+// Jad home page: http://www.kpdus.com/jad.html
+// Decompiler options: packimports(3) 
+// Source File Name:   SingleEnum.java
+
+package site.iblogs.single;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
+public final class SingleEnum extends Enum
+{
+
+    public static SingleEnum[] values()
+    {
+        return (SingleEnum[])$VALUES.clone();
+    }
+
+    public static SingleEnum valueOf(String name)
+    {
+        return (SingleEnum)Enum.valueOf(site/iblogs/single/SingleEnum, name);
+    }
+
+    private SingleEnum(String s, int i)
+    {
+        super(s, i);
+    }
+
+    public SingleEnum getInstance()
+    {
+        return INSTANCE;
+    }
+
+    public static void main(String args[])
+        throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException
+    {
+        Constructor constructor = site/iblogs/single/SingleEnum.getDeclaredConstructor(new Class[] {
+            java/lang/String, Integer.TYPE
+        });
+        constructor.setAccessible(true);
+        SingleEnum instance = (SingleEnum)constructor.newInstance(new Object[] {
+            "string", Integer.valueOf(1)
+        });
+    }
+
+    public static final SingleEnum INSTANCE;
+    private static final SingleEnum $VALUES[];
+
+    static 
+    {
+        INSTANCE = new SingleEnum("INSTANCE", 0);
+        $VALUES = (new SingleEnum[] {
+            INSTANCE
+        });
+    }
+}

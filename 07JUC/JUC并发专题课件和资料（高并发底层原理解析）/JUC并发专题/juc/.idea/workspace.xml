@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c6c6aecc-7dd6-44d1-8634-0224b526c2e4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileACID.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileACID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileAtomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileAtomic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileDemo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../JUC/src/main/java/site/iblogs/jmm/VolatileDemo1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
