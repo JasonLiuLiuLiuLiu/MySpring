@@ -46,6 +46,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Administrator/Desktop/JUC并发专题/juc/src/main/java/com/coding/demo01/SaleTicketTest1.java&#10;RunnableFuture&#9;PSI&#9;JAVA://java.util.concurrent.RunnableFuture" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -187,6 +188,7 @@
       <workItem from="1581264329624" duration="640000" />
       <workItem from="1581692687249" duration="1399000" />
       <workItem from="1581759686694" duration="774000" />
+      <workItem from="1582034512136" duration="1227000" />
     </task>
     <servers />
   </component>
