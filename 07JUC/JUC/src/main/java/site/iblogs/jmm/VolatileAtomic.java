@@ -5,6 +5,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class VolatileAtomic {
     private volatile static AtomicInteger num=new AtomicInteger();
 
+    //原子性
+
     private static void  add(){
         num.incrementAndGet();
     }

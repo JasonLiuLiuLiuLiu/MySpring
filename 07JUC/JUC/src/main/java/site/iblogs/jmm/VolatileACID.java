@@ -3,6 +3,8 @@ package site.iblogs.jmm;
 public class VolatileACID {
     private volatile static int num=0;
 
+    //不保证原子性
+
     public static void  add(){
         num++;
     }

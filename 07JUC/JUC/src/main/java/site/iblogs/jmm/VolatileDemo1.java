@@ -4,6 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 public class VolatileDemo1 {
 
+
+    //保证可见性
     private volatile static int num = 0;
 
     public static void main(String[] args) throws InterruptedException {
