@@ -1,0 +1,51 @@
+
+* {
+    height: 100px;
+    margin: 10px;
+  }
+  header, footer {
+    background-color: YELLOW;
+  }
+  main {
+    background-color: BLUE;
+  }
+  aside {
+    background-color: GREEN;
+  }
+  
+  .left {
+    width: 200px;
+    float: left;
+  }
+  .middle {
+    margin: 20px 230px 20px 230px;
+  }
+  .right {
+    width: 200px;
+    float: right;
+  }
+
+  
+@media screen and (min-width: 640px) {
+    .left {
+      width: 200px;
+      float: left;
+    }
+    .middle {
+      margin: 20px 230px 20px 230px;
+    }
+    .right {
+      width: 200px;
+      float: right;
+    }
+  }
+  
+  @media screen and (max-width: 640px) {
+    .middle {
+      margin: auto;
+    }
+    .left, .right {
+      width: auto;
+      float: none;
+    }
+  }
